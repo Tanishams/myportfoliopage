@@ -1,0 +1,113 @@
+:root {
+    --primary: #22d3ee;
+    --secondary: #a855f7;
+    --dark: #020617;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--dark);
+    color: #f8fafc;
+    overflow-x: hidden;
+}
+
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+
+/* Glassmorphism Base */
+.glass {
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass:hover {
+    background: rgba(15, 23, 42, 0.6);
+    border-color: rgba(34, 211, 238, 0.3);
+}
+
+/* Gradient Text */
+.gradient-text {
+    background: linear-gradient(135deg, #22d3ee 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* CGPA Hover Effect */
+.cgpa-card {
+    position: relative;
+    overflow: hidden;
+}
+.cgpa-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(34, 211, 238, 0.15) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+.cgpa-card:hover::after { opacity: 1; }
+.cgpa-card:hover .cgpa-value {
+    transform: scale(1.1);
+    color: var(--primary);
+    text-shadow: 0 0 20px rgba(34, 211, 238, 0.6);
+}
+
+/* Skill Tag Interaction */
+.skill-tag {
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+.skill-tag:hover {
+    transform: translateY(-2px);
+    background: rgba(34, 211, 238, 0.1);
+    border-color: var(--primary);
+    color: white;
+}
+.skill-level {
+    height: 2px;
+    width: 0;
+    background: var(--primary);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: width 0.5s ease-out;
+    box-shadow: 0 0 10px var(--primary);
+}
+.skill-tag:hover .skill-level { width: 100%; }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #020617; }
+::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+/* Background Grid */
+.bg-grid {
+    background-size: 50px 50px;
+    background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+@keyframes pulse-slow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+.animate-pulse-slow { animation: pulse-slow 6s infinite; }
+
+.typing-cursor::after {
+    content: "|";
+    animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+    from, to { color: transparent; }
+    50% { color: var(--primary); }
+}
+
+/* Image Glow Effect */
+.profile-glow {
+    box-shadow: 0 0 50px -10px rgba(34, 211, 238, 0.3);
+}
